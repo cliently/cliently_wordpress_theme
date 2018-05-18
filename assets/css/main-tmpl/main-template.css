@@ -85,14 +85,20 @@ display:table;
     padding: 0px 2px;
 	color:white;
 }
-.right-panel .send-emails-videos .icon-wrap{
-	padding:5px;
+.right-panel .send-emails-videos .icon-wrap
+{
 	display:table-cell;
+    width: 10%;
+    padding-right: 6px;
 }
 .right-panel .send-emails-videos .sev-text{
 	padding:5px;
 	display:table-cell;
+<<<<<<< HEAD
 	width: 222px;
+=======
+	/*width: 222px;*/
+>>>>>>> upstream/master
     height: 45px;
     font-family: Roboto;
     font-size: 13px;
@@ -1423,5 +1429,35 @@ h4.modal-title  div.action_header  span
 	margin-bottom: 0px;
 }
 
+<<<<<<< HEAD
 
+=======
+.page_name p 
+{
+	font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    margin: auto;
+}
+.page_name p:nth-child(1) 
+{
+    font-size: 54px;
+    margin-bottom: 8px
+}
+.page_name p:nth-child(2) 
+{
+    font-size: 40px;
+    margin-bottom: 8px;   
+    
+}
+.page_name p:nth-child(3) 
+{
+    font-size: 54px;
+	
+}
+>>>>>>> upstream/master
 

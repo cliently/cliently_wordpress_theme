@@ -8,7 +8,7 @@ wp_enqueue_script( 'bootstrap-js', get_stylesheet_directory_uri().'/assets/js/ma
 wp_enqueue_script( 'main-template', get_stylesheet_directory_uri().'/assets/js/main-tmpl/main-template.js' );
 
 
-
+$current_theme = "twentyseventeen";
 
 ?>
 <!DOCTYPE html>
@@ -30,8 +30,7 @@ wp_enqueue_script( 'main-template', get_stylesheet_directory_uri().'/assets/js/m
                   $similar_camps = json_encode($someArray['similar_camp'],true);
                   $author = json_encode($someArray['author'],true);
                   $tips = json_encode($someArray['tips'],true);
-//                var_dump($actions_data);
-                  
+                  $ind_data = json_encode($someArray['industry_data'],true);
                   ?>
                   <div class="page_title">
                       <div class="page_name">
@@ -91,7 +90,7 @@ wp_enqueue_script( 'main-template', get_stylesheet_directory_uri().'/assets/js/m
 						  		<div class="send-emails-videos">
 						  		<div class="list-item">
 							  		<div class="icon-wrap">
-							  			<span class="list-icon">✓</span>
+							  			<img src="~/../wp-content/themes/<?php echo $current_theme;?>/assets/images/cliently-images/circle_check.svg">
 							  		</div>
 							  		<div class="sev-text">
 							  			Reach out to clients through multiple channels to ensure the highest response rate.
@@ -99,7 +98,7 @@ wp_enqueue_script( 'main-template', get_stylesheet_directory_uri().'/assets/js/m
 							  		</div>
 							  	<div class="list-item">
 							  		<div class="icon-wrap">
-							  			<span class="list-icon">✓</span>
+							  			<img src="~/../wp-content/themes/<?php echo $current_theme;?>/assets/images/cliently-images/circle_check.svg">
 							  		</div>
 							  		<div class="sev-text">
 							  			Send automated Emails, custom Video Messages, Physical Postcards, and Handwritten Notes with Gift Cards to really engage your prospect.
@@ -107,7 +106,7 @@ wp_enqueue_script( 'main-template', get_stylesheet_directory_uri().'/assets/js/m
 							  		</div>
 							  		<div class="list-item">
 							  		<div class="icon-wrap">
-							  			<span class="list-icon">✓</span>
+										<img src="~/../wp-content/themes/<?php echo $current_theme;?>/assets/images/cliently-images/circle_check.svg">
 							  		</div>
 							  		<div class="sev-text">
 							  			Engage with leads directly from your CRM or by uploading a list of contacts.
@@ -127,7 +126,8 @@ wp_enqueue_script( 'main-template', get_stylesheet_directory_uri().'/assets/js/m
 				  		</div>
                   <?php echo "<script type=\"text/javascript\">
                  			 
-                 	     $(document).ready(function() { 
+                 	     $(document).ready(function() {
+                 	              addPageTitle($ind_data); 
   								  addactions($actions_data);
   							  	  addSimilarCamp($similar_camps);
 								  addTips($tips);		
