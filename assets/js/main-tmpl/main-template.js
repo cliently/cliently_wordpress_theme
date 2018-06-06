@@ -291,7 +291,8 @@ var addAuthorDetails = function(author)
 	  	  stepname = author.written_by;
 	  	  imgpath  = aws_upload_url + author.author_image;
 	  	  action_detail= author.job_title ;
-	  	  $(addDiv).find('div.action-flow-image >img').attr('src',imgpath);
+	  	  $(addDiv).find('div.action-flow-image >img').remove();
+	  	  $(addDiv).find('div.action-flow-image').css('background-image','url('+imgpath+')');
 	  	  $(addDiv).find('div.action-details >  div.action-name').text(stepname);
 	  	  $(addDiv).find('div.action-details >  div.action-detail').text(action_detail);
 	  	  $(addDiv).addClass('author-in-flow').removeClass('action-in-flow');
@@ -337,13 +338,29 @@ var addTips = function(tips)
 	 }
 }
 
+var lockPanels = function()
+{
+	 if($(document).scrollTop().valueOf() > 275)
+	    {
+			$('.action-left-panel').addClass('fixed');
+			$('.right-panel').addClass('fixed_right');
+		}
+		else
+		{
+			$('.action-left-panel').removeClass('fixed');
+			$('.right-panel').removeClass('fixed_right');
+		}	
 
+}
 
 $(document).ready(function(){
 
 
 	$('.action-in-flow').click(function(){
 
+		$('.action-in-flow').removeClass('active');
+		$(this).addClass('active');
+		
 		var base_url = '~/../wp-content/themes/' + current_theme + '/assets/images/cliently-images';
 
 		var modal = $('.modal');
@@ -427,7 +444,16 @@ $(document).ready(function(){
 	                  $(modal).find('.work-creation-wizard-step').attr('data-step','work-pane-event-time-delay');
 	                  var wait_upper = $('<div class="wait_action_upper" />');
 	                  $(wait_upper).append('<p>How long would you like to wait before sending the next step?</p>');
-	                  $(wait_upper).append('<label> <input id="wait_day" type="text" name="type_value" class="form-control" size="2" /> &nbsp;days</label>');
+	                  
+	                  if($(hidden).find('input.days_val').val() == "1")
+	                  {
+	                	  $(wait_upper).append('<label> <input id="wait_day" type="text" name="type_value" class="form-control" size="2" /> &nbsp;day</label>');
+	                  }
+	                  else 
+	                  {
+	                	  $(wait_upper).append('<label> <input id="wait_day" type="text" name="type_value" class="form-control" size="2" /> &nbsp;days</label>');
+	                  }
+	                  
 	                  $(wait_upper).find('#wait_day').val($(hidden).find('input.days_val').val());
 	                  $('#work-pane-event-time-delay').find('input#wait_day').val($(hidden).find('input.days_val').val());
 	                  var wait_lower = $('<div class="wait_action_lower">');
@@ -470,7 +496,7 @@ $(document).ready(function(){
 	                  $(video_comm).find('.btn-on').addClass('active');
 	                  var video_email_action_lower = $('<div class="video_email_action_lower">');
 	                  var video_action_video_part = $('<div class="video_action_video_part">');
-	                  video_action_video_part.append('<video controls src="'+ base_url_back +'/Video_email/' + $(hidden).find('input.video_email_name').val() +'"/>')
+	                  video_action_video_part.append('<video controls src="'+ aws_upload_url + $(hidden).find('input.video_email_name').val() +'"/>')
 	                  var video_eamil_body = $('<div class="video_eamil_body" />');
 	                  video_eamil_body.append($(hidden).find('textarea.videoemail_body').val());
 	                  video_email_action_lower.append(video_action_video_part,video_eamil_body);
@@ -508,20 +534,20 @@ $(document).ready(function(){
 	                  post_card_msg.find('textarea').val( $(hidden).find('textarea.postcard_msg').val());
 	                  post_card_back.append(post_card_msg);
 	                  var post_card_from =  $('<div class="post_card_from">');
-	                  post_card_from.append('<p>'+ $(hidden).find('input.from_fullname').val() +'</p><br>');
-	                  post_card_from.append('<p>'+ $(hidden).find('input.from_companyname').val() +'</p><br>');
-	                  post_card_from.append('<p>'+ $(hidden).find('input.from_line1').val() +'</p><br>');
-	                  post_card_from.append('<p>'+ $(hidden).find('input.from_line2').val()+'</p><br>');
+	                  post_card_from.append('<p>'+ $(hidden).find('input.from_fullname').val() +'</p>');
+	                  post_card_from.append('<p>'+ $(hidden).find('input.from_companyname').val() +'</p>');
+	                  post_card_from.append('<p>'+ $(hidden).find('input.from_line1').val() +'</p>');
+	                  post_card_from.append('<p>'+ $(hidden).find('input.from_line2').val()+'</p>');
 	                  post_card_back.append(post_card_from);
 	                  var post_card_img_tmpl =  $('<div class="post_card_img_tmpl">');
 	                  post_card_img_tmpl.append('<img src="' + base_url +'/postcard.png">');
 	                  post_card_back.append(post_card_img_tmpl);
 	                  var post_card_to =  $('<div class="post_card_to">');
-	                  post_card_to.append('<p>'+ $(hidden).find('input.to_fullname').val() +'</p><br>');
-	                  post_card_to.append('<p>'+ $(hidden).find('input.to_companyname').val() +'</p><br>');
-	                  post_card_to.append('<p>'+ $(hidden).find('input.to_line1').val() +'</p><br>');
-	                  post_card_to.append('<p>'+ $(hidden).find('input.to_line2').val()+'</p><br>');
-	                  post_card_to.append('<p class="extra_note">Address will be populated from lead card.</p><br>');
+	                  post_card_to.append('<p>'+ $(hidden).find('input.to_fullname').val() +'</p>');
+	                  post_card_to.append('<p>'+ $(hidden).find('input.to_companyname').val() +'</p>');
+	                  post_card_to.append('<p>'+ $(hidden).find('input.to_line1').val() +'</p>');
+	                  post_card_to.append('<p>'+ $(hidden).find('input.to_line2').val()+'</p>');
+	                  post_card_to.append('<p class="extra_note">Address will be populated from lead card.</p>');
 	                  post_card_back.append(post_card_to);
 	                  post_card_lower.append(post_card_front,post_card_back)
 	                  $(modal).find('.work-creation-wizard-step').append(post_card_comm,post_card_lower);
@@ -716,6 +742,8 @@ $(document).ready(function(){
 				  break;
 	    	}
 		}
+		
+		lockPanels();
 
 	});
 

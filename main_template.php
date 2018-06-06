@@ -8,7 +8,7 @@ wp_enqueue_script( 'bootstrap-js', get_stylesheet_directory_uri().'/assets/js/ma
 wp_enqueue_script( 'main-template', get_stylesheet_directory_uri().'/assets/js/main-tmpl/main-template.js' );
 
 
-$current_theme = "twentyseventeen";
+$current_theme = "x";
 
 ?>
 <!DOCTYPE html>
@@ -132,6 +132,23 @@ $current_theme = "twentyseventeen";
   							  	  addSimilarCamp($similar_camps);
 								  addTips($tips);		
 								  addAuthorDetails($author);
+								  $($('div.flow-action > .action-in-flow')[0]).click();
+								  
+
+							$(window).scroll(function(){
+							 
+							    if($(document).scrollTop().valueOf() > 275)
+							    {
+									$('.action-left-panel').addClass('fixed');	
+									$('.right-panel').addClass('fixed_right');
+								}
+								else
+								{
+									$('.action-left-panel').removeClass('fixed');
+									$('.right-panel').removeClass('fixed_right');
+								}
+  
+							});  
 
 		                 });
                      </script>";
