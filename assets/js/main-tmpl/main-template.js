@@ -1,9 +1,4 @@
 var base_url_back = 'https://www.cliently.com/cliently_cms/uploads';
-<<<<<<< HEAD
-var current_theme = "x";
-var default_credit = 8;
-
-=======
 var aws_upload_url = 'https://cliently-wp.s3.us-west-2.amazonaws.com/cliently_cms/';
 var current_theme = "x";
 var default_credit = 8;
@@ -19,8 +14,6 @@ var addPageTitle = function(ind_data)
     $('div.page_name').append('<p>'+ind_data.ind_2+'</p>');
 }
 
-
->>>>>>> upstream/master
 var addactions = function(actions)
 {
 	for (var i = 0; i < actions.length; ++i)
@@ -54,13 +47,13 @@ var addactions = function(actions)
 	       		  imgpath  = base_url + '/wait.svg';
 	       		  if(action.days == '1')
 	       		  {
-	       			action_detail='Wait ' + action.days +' Day' ;  
+	       			action_detail='Wait ' + action.days +' Day' ;
 	       		  }
 	       		  else
 	       		  {
 	       			action_detail='Wait ' + action.days +' Days' ;
 	       		  }
-				  
+
 				  var only_weekend = $('<input class=\'only_weekend_check\' />');
 				  var days_val = $('<input class=\'days_val\' />');
 				  only_weekend.val(action.weekend_check);
@@ -210,7 +203,7 @@ var addactions = function(actions)
 
 		   		  var type ='';
 		   		  stepname = 'LINKEDIN';
-		   		  
+
 		   	      imgpath  = base_url + "/linkedin.svg";
 
 		   	      if(action.linkedin_type =='INMAIL')
@@ -255,7 +248,7 @@ var addactions = function(actions)
 			     {
 			    	 action_detail = 'UnFollow';
 			     }
-			     
+
 				 var follow_unfollow = $('<input class="follow_unfollow" />');
 				 follow_unfollow.val(action.follow_unfollow);
 
@@ -274,7 +267,7 @@ var addactions = function(actions)
 	   $(addDiv).attr('position', action_position);
 	   $(".flow-action").append(addDiv);
 	   $(".flow-action").addClass('slimScrollBar-for-action-box');
-	   
+
 	}
 
 }
@@ -349,7 +342,7 @@ var lockPanels = function()
 		{
 			$('.action-left-panel').removeClass('fixed');
 			$('.right-panel').removeClass('fixed_right');
-		}	
+		}
 
 }
 
@@ -360,7 +353,7 @@ $(document).ready(function(){
 
 		$('.action-in-flow').removeClass('active');
 		$(this).addClass('active');
-		
+
 		var base_url = window.location.protocol + "//" + window.location.host + '/wp-content/themes/' + current_theme + '/assets/images/cliently-images';
 
 		var modal = $('.modal');
@@ -444,16 +437,16 @@ $(document).ready(function(){
 	                  $(modal).find('.work-creation-wizard-step').attr('data-step','work-pane-event-time-delay');
 	                  var wait_upper = $('<div class="wait_action_upper" />');
 	                  $(wait_upper).append('<p>How long would you like to wait before sending the next step?</p>');
-	                  
+
 	                  if($(hidden).find('input.days_val').val() == "1")
 	                  {
 	                	  $(wait_upper).append('<label> <input id="wait_day" type="text" name="type_value" class="form-control" size="2" /> &nbsp;day</label>');
 	                  }
-	                  else 
+	                  else
 	                  {
 	                	  $(wait_upper).append('<label> <input id="wait_day" type="text" name="type_value" class="form-control" size="2" /> &nbsp;days</label>');
 	                  }
-	                  
+
 	                  $(wait_upper).find('#wait_day').val($(hidden).find('input.days_val').val());
 	                  $('#work-pane-event-time-delay').find('input#wait_day').val($(hidden).find('input.days_val').val());
 	                  var wait_lower = $('<div class="wait_action_lower">');
@@ -524,11 +517,7 @@ $(document).ready(function(){
 	                  post_card_front.find('img').attr('src', aws_upload_url + $(hidden).find('input.frnt_img').val() );
 
 	                  var post_card_back = $('<div class="post_card_back"><img src=""/></div>');
-<<<<<<< HEAD
-	                  post_card_back.find('img').attr('src', base_url_back + '/Images/' + $(hidden).find('input.bck_img').val());
-=======
 	                  post_card_back.find('img').attr('src', aws_upload_url + $(hidden).find('input.bck_img').val());
->>>>>>> upstream/master
 
 	                  var post_card_msg = $('<div class="post_card_msg"><textarea/></div>');
 	                  post_card_msg.find('textarea').val( $(hidden).find('textarea.postcard_msg').val());
@@ -572,7 +561,7 @@ $(document).ready(function(){
 				      hdn_message.find('textarea').val($(hidden).find('textarea.hwnote_msg').val());
 				      hdn_message.css('background-image','url('+base_url+'/handwrittennote_bg.png)');
 				      hdn_message.css('background-repeat','no-repeat');
-				      
+
 				      var hdn_addional_note = $('<p class="hdn_addional_note">This will be handwritten on a 4x6 heavyweight index card.</p>');
 				      var hdn_envelop = $('<div class="hdn_envelop"/>');
 				      var hdn_envelop_from = $('<div class="hdn_envelop_from"/>');
@@ -664,7 +653,7 @@ $(document).ready(function(){
 				    	  $(gift_envelop).find('div.gift_envelop_from > p').css('color','black');
 				    	  $(gift_envelop).find('div.gift_envelop_to > p').css('color','black');
 				      }
-				      
+
 //	    	    	  $('#gifting').find('select#gift_card').val($(hidden).find('input.gift_card_script').val());
 //	    	    	  $('#gifting').find('input#ammount_for_gifting').val($(hidden).find('input.ammount_for_gifting	').val());
 //
@@ -742,7 +731,7 @@ $(document).ready(function(){
 				  break;
 	    	}
 		}
-		
+
 		lockPanels();
 
 	});
